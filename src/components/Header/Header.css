@@ -1,0 +1,33 @@
+header {
+  height: 91px;
+  background: #020203;
+  width: 100%;
+}
+
+header nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+header img {
+  width: 178px;
+}
+
+header ul {
+  padding-right: 87px;
+  padding-left: 29px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header li {
+  list-style: none;
+  font-size: 24px;
+  font-weight: 500;
+}
+header li a {
+  color: #fff;
+  text-decoration: none;
+}
