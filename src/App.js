@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
+import VerticalNav from "./components/VerticalNav/VerticalNav";
 import Profil from "./pages/Profil";
 import Accueil from "./pages/Accueil";
 import Communaute from "./pages/Communaute";
@@ -10,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <VerticalNav />
       <main>
         <Routes>
           <Route path="/" element={<Accueil />} />

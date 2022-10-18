@@ -1,0 +1,36 @@
+.vertical-nav {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 91px;
+  width: 117px;
+  background: #020203;
+  padding-bottom: 59px;
+}
+
+.vertical-nav ul {
+  height: calc(100% - 91px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.vertical-nav li {
+  list-style: none;
+}
+
+.vertical-nav p {
+  transform: rotate(-90deg);
+  color: #fff;
+  width: 138px;
+  height: 24px;
+  /* padding-left: 42px; */
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+}
