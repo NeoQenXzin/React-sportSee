@@ -1,3 +1,9 @@
+/* .vertical-nav-container {
+  height: 1000px;
+  width: 307px;
+  background: #0000d2;
+  height: 120%;
+} */
 .vertical-nav {
   position: absolute;
   left: 0;
@@ -6,6 +12,7 @@
   width: 117px;
   background: #020203;
   padding-bottom: 59px;
+  /* height: 100%; */
 }
 
 .vertical-nav ul {
@@ -22,7 +29,9 @@
 .vertical-nav li {
   list-style: none;
 }
-
+.vertical-nav a:hover {
+  filter: brightness(80%);
+}
 .vertical-nav p {
   transform: rotate(-90deg);
   color: #fff;
