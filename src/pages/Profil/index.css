@@ -32,8 +32,9 @@ p {
   align-items: center;
 }
 .barre-graphic {
+  position: relative;
   width: 100%;
-  border: 2px red solid;
+  /* border: 2px red solid; */
   height: 320px;
   background: #fbfbfb;
   border-radius: 5px;
