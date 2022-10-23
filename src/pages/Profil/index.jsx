@@ -1,9 +1,9 @@
 import { USER_MAIN_DATA } from "../../data/mocked-data";
 import "./index.css";
-import BarChart from "../../components/BarChart/BarChart";
-import LineChart from "../../components/LineChart/LineChart";
-import RadarChart from "../../components/RadarChart/RadarChart";
-import RadialChart from "../../components/RadialChart/RadialChart";
+import BarChartx from "../../components/BarChart/BarChart";
+import LineChartx from "../../components/LineChart/LineChart";
+import RadarChartx from "../../components/RadarChart/RadarChart";
+import PieChart from "../../components/PieChart/PieChart";
 import calories from "./img/calories-icon.png";
 import proteines from "./img/protein-icon.png";
 import glucides from "./img/carbs-icon.png";
@@ -24,17 +24,17 @@ function Profil() {
         {/* partie gauche data utilisateur  */}
         <div className="graphics">
           <div className="barre-graphic">
-            <BarChart />
+            <BarChartx />
           </div>
           <div className="graphic-container">
             <div className="graphic line-chart">
-              <LineChart />
+              <LineChartx />
             </div>
             <div className="graphic radar-chart">
-              <RadarChart />
+              <RadarChartx />
             </div>
-            <div className="graphic radial-chart">
-              <RadialChart />
+            <div className="graphic pie-chart">
+              <PieChart />
             </div>
           </div>
         </div>
