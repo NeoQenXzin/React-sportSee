@@ -1,0 +1,30 @@
+.recharts-responsive-container {
+  position: absolute;
+  bottom: 0;
+}
+
+.linechart-title {
+  position: absolute;
+  top: 29px;
+  left: 34px;
+  font-size: 15px;
+  line-height: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-tooltip {
+  height: 30px;
+  position: relative;
+  text-align: center;
+  background: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: 0; */
+}
+.custom-tooltip .intro {
+  padding: 10px 15px;
+}

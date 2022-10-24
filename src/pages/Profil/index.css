@@ -54,8 +54,11 @@ p {
   height: 100%;
   border: 1px solid black;
   border-radius: 5px;
+  position: relative;
 }
-
+.line-chart {
+  background: #ff0000;
+}
 /* data utilisateur  */
 .container-graphics .results {
   margin-left: 31px;
