@@ -1,9 +1,6 @@
-/* .vertical-nav-container {
-  height: 1000px;
-  width: 307px;
-  background: #0000d2;
-  height: 120%;
-} */
+.vertical-nav-container {
+  margin-bottom: 0;
+}
 .vertical-nav {
   position: absolute;
   left: 0;
@@ -12,7 +9,8 @@
   width: 117px;
   background: #020203;
   padding-bottom: 59px;
-  /* height: 100%; */
+  height: 100%;
+  margin-bottom: 0;
 }
 
 .vertical-nav ul {
