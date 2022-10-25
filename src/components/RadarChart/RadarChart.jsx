@@ -1,44 +1,53 @@
 import React from "react";
+import "./RadarChart.css";
 import { USER_PERFORMANCE } from "../../data/mocked-data";
 import {
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   Radar,
-  Legend,
   RadarChart,
+  ResponsiveContainer,
 } from "recharts";
 
 export default function RadarChartx() {
   console.log(USER_PERFORMANCE[1]);
+  const kind = USER_PERFORMANCE[1].kind;
+  const data = USER_PERFORMANCE[1].data;
+  const kindTitle = {
+    cardio: "Cardio",
+    energy: "Energy",
+    endurance: "Endurance",
+    strength: "Strength",
+    speed: "Speed",
+    intensity: "Intensity",
+  };
+  const formatKind = (id) => kindTitle[kind[id]];
   return (
     <div>
-      RadarChart
-      <RadarChart
-        outerRadius={90}
-        width={258}
-        height={253}
-        data={USER_PERFORMANCE[1].kind}
-      >
-        <PolarGrid />
-        <PolarAngleAxis dataKey="kind" />
-        <PolarRadiusAxis angle={30} domain={[0, 150]} />
-        <Radar
-          name="Mike"
-          dataKey={USER_PERFORMANCE[1].data.values}
-          stroke="#8884d8"
-          fill="#8884d8"
-          fillOpacity={0.6}
-        />
-        <Radar
-          name="Lily"
-          dataKey="B"
-          stroke="#82ca9d"
-          fill="#82ca9d"
-          fillOpacity={0.6}
-        />
-        <Legend />
-      </RadarChart>
+      <ResponsiveContainer width={258} height={253}>
+        <RadarChart
+          cx="50%"
+          cy="50%"
+          outerRadius="65%"
+          startAngle={210}
+          endAngle={570}
+          data={data}
+        >
+          <PolarGrid />
+          <PolarAngleAxis
+            dataKey="kind"
+            tickFormatter={formatKind}
+            tick={{ fill: "#FFF", fontFamily: "Roboto", fontSize: "12px" }}
+          />
+
+          <Radar
+            dataKey="value"
+            stroke="#E60000"
+            fill="#E60000"
+            fillOpacity={0.7}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

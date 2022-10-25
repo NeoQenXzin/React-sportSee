@@ -59,6 +59,9 @@ p {
 .line-chart {
   background: #ff0000;
 }
+.radar-chart {
+  background: #282d30;
+}
 /* data utilisateur  */
 .container-graphics .results {
   margin-left: 31px;
