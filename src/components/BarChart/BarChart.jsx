@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./BarChart.css";
 import {
   BarChart,
@@ -11,6 +12,11 @@ import {
 } from "recharts";
 
 export default function BarChartx({ data }) {
+  // propTypes
+  BarChartx.propTypes = {
+    data: propTypes.array.isRequired,
+  };
+
   const formatDay = (item) => new Date(item).getDate();
   return (
     <div>

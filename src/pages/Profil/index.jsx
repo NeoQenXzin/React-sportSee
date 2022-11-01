@@ -23,8 +23,7 @@ import { useContext } from "react";
 function Profil() {
   // Appel Api ou mocked-data via un hook
   const apiData = useCallApi();
-  const { activity, averageSessions, performance, performanceKind, userScore } =
-    apiData;
+  const { activity, averageSessions, performance, user, userScore } = apiData;
   console.log(performance);
   console.log(activity);
   console.log(apiData);
@@ -37,10 +36,7 @@ function Profil() {
   return (
     <div className="profil">
       <h1>
-        Bonjour{" "}
-        <span className="user-name">
-          {USER_MAIN_DATA[1].userInfos.firstName}
-        </span>
+        Bonjour <span className="user-name">{user.userInfos.firstName}</span>
       </h1>
       <p>Félicitation ! Vous avez explosez vos objectifs d'hier 👏 </p>
 
@@ -61,7 +57,7 @@ function Profil() {
               {/* <RadarChartx data={USER_PERFORMANCE[1]} /> */}
             </div>
             <div className="graphic pie-chart">
-              <PieChart data={userScore} />
+              <PieChart data={userScore.score} />
               {/* <PieChart data={USER_MAIN_DATA[1].score} /> */}
             </div>
           </div>

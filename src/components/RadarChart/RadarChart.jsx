@@ -1,6 +1,7 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./RadarChart.css";
-import { USER_PERFORMANCE } from "../../data/mocked-data";
+// import { USER_PERFORMANCE } from "../../data/mocked-data";
 import {
   PolarGrid,
   PolarAngleAxis,
@@ -10,9 +11,16 @@ import {
 } from "recharts";
 
 export default function RadarChartx({ data }) {
-  console.log(data);
+  // console.log(data);
   const kind = data.kind;
   const datas = data.data;
+  //propTypes
+  RadarChartx.propTypes = {
+    data: propTypes.object.isRequired,
+    // datas: propTypes.object.isRequired,
+    // kind: propTypes.object.isRequired,
+  };
+
   const kindTitle = {
     cardio: "Cardio",
     energy: "Energy",

@@ -12,7 +12,7 @@ export default function useCallApi() {
   const [apiAverageSessions, setApiAverageSessions] = useState();
   const [apiPerformance, setApiPerformance] = useState();
   const [apiPerformanceKind, setApiPerformanceKind] = useState();
-  const [apiUserScore, setApiUserScore] = useState();
+  const [apiUserScore, setApiUserScore] = useState(2);
 
   // !!! Déclanche une boucle infini
   // fetch("http://localhost:8000/user/12/activity")
@@ -35,19 +35,18 @@ export default function useCallApi() {
         .then((data) => setApiAverageSessions(data.data.sessions))
         .catch((error) => console.log(error));
 
-      fetch("http://localhost:8000/user/12/performance")
+      fetch("http://localhost:8000/user/12/")
         .then((response) => response.json())
-        .then((data) => {
-          setApiPerformance(data.data);
-          setApiPerformanceKind(data.data.kind);
-        })
-        .catch((error) => console.log(error));
-
-      fetch("http://localhost:8000/user/12")
-        .then((response) => response.json())
-        .then((data) => setApiUserScore(data.score))
+        .then((data) => setApiUserScore(data))
         .catch((error) => console.log(error));
     };
+    fetch("http://localhost:8000/user/12/performance")
+      .then((response) => response.json())
+      .then((data) => {
+        setApiPerformance(data.data);
+        setApiPerformanceKind(data.data.kind);
+      })
+      .catch((error) => console.log(error));
 
     setData();
   }, []);
@@ -60,14 +59,18 @@ export default function useCallApi() {
   //   userScore: apiUserScore,
   // };
   console.log(apiActivity);
+  console.log(apiAverageSessions);
+  console.log(apiPerformance);
+  console.log(apiUserScore);
+  console.log(apiPerformanceKind);
 
   // Mocked data
   const données = {
     activity: USER_ACTIVITY[1].sessions,
     averageSessions: USER_AVERAGE_SESSIONS[1].sessions,
     performance: USER_PERFORMANCE[1],
-    performanceKind: USER_MAIN_DATA[1].score,
-    userScore: USER_MAIN_DATA[1].score,
+    user: USER_MAIN_DATA[1],
+    userScore: USER_MAIN_DATA[1],
   };
   // Les données n'arrive pas dans index.js => cause j'avais écrit: return { données } au lieu de: return données
 

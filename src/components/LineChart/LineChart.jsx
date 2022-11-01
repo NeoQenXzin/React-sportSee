@@ -1,6 +1,6 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./LineChart.css";
-import { USER_AVERAGE_SESSIONS } from "../../data/mocked-data";
 import {
   LineChart,
   ResponsiveContainer,
@@ -9,8 +9,14 @@ import {
   YAxis,
   Line,
 } from "recharts";
+// import { USER_AVERAGE_SESSIONS } from "../../data/mocked-data";
 
 export default function LineChartx({ data }) {
+  // prop-types
+  LineChartx.propTypes = {
+    data: propTypes.array.isRequired,
+  };
+
   const dayWeek = { 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S", 7: "D" };
   const formatDay = (item) => dayWeek[item];
 
@@ -23,6 +29,11 @@ export default function LineChartx({ data }) {
       );
     }
     return null;
+  };
+  //prop-types
+  CustomTooltip.propTypes = {
+    active: propTypes.bool,
+    payload: propTypes.array,
   };
 
   return (
