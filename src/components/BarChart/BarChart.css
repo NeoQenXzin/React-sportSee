@@ -17,12 +17,20 @@
   right: 32px;
   display: flex;
   gap: 52px;
+  border: none;
 }
 .barchart-legend li {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+/* .tooltip {
+  color: #fff;
+  font-size: 7px;
+  background: #e60000;
+  font-weight: 500;
+  font-family: "Roboto";
+} */
 .barchart-legend li::before {
   display: block;
   content: "";

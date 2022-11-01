@@ -9,10 +9,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function RadarChartx() {
-  console.log(USER_PERFORMANCE[1]);
-  const kind = USER_PERFORMANCE[1].kind;
-  const data = USER_PERFORMANCE[1].data;
+export default function RadarChartx({ data }) {
+  console.log(data);
+  const kind = data.kind;
+  const datas = data.data;
   const kindTitle = {
     cardio: "Cardio",
     energy: "Energy",
@@ -31,7 +31,7 @@ export default function RadarChartx() {
           outerRadius="65%"
           startAngle={210}
           endAngle={570}
-          data={data}
+          data={datas}
         >
           <PolarGrid />
           <PolarAngleAxis

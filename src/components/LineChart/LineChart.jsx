@@ -10,7 +10,7 @@ import {
   Line,
 } from "recharts";
 
-export default function LineChartx() {
+export default function LineChartx({ data }) {
   const dayWeek = { 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S", 7: "D" };
   const formatDay = (item) => dayWeek[item];
 
@@ -32,7 +32,7 @@ export default function LineChartx() {
       </h2>
       <ResponsiveContainer width={258} height={170}>
         <LineChart
-          data={USER_AVERAGE_SESSIONS[1].sessions}
+          data={data}
           // margin={{ top: 5, bottom: 50 }}
         >
           <XAxis

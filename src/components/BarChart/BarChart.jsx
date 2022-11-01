@@ -9,9 +9,8 @@ import {
   Bar,
   ResponsiveContainer,
 } from "recharts";
-import { USER_ACTIVITY } from "../../data/mocked-data";
 
-export default function BarChartx() {
+export default function BarChartx({ data }) {
   const formatDay = (item) => new Date(item).getDate();
   return (
     <div>
@@ -21,7 +20,7 @@ export default function BarChartx() {
         <li>Calories brûlées (kcal)</li>
       </ul>
       <ResponsiveContainer width={835} height={200}>
-        <BarChart data={USER_ACTIVITY[1].sessions}>
+        <BarChart data={data}>
           <CartesianGrid strokeDasharray="2" vertical={false} />
           <XAxis
             dataKey="day"
@@ -47,7 +46,7 @@ export default function BarChartx() {
             orientation="right"
             domain={["dataMin-100", "dataMax+0"]}
           />
-          <Tooltip />
+          <Tooltip className="tooltip" />
           <Bar
             dataKey="kilogram"
             fill="#282d30"

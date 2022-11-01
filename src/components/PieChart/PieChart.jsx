@@ -3,8 +3,8 @@ import "./PieChart.css";
 import { USER_MAIN_DATA } from "../../data/mocked-data";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
-export default function PieChartx() {
-  const data = USER_MAIN_DATA[1].score;
+export default function PieChartx({ data }) {
+  const datas = data;
   const CustomLegend = ({ payload }) => (
     <div className="chart-legend">
       <div className="chart-legend-1">{payload[0].payload.value * 100}%</div>
@@ -20,8 +20,8 @@ export default function PieChartx() {
           <Pie
             dataKey="value"
             data={[
-              { name: "score", value: data },
-              { name: "total", value: 1 - data },
+              { name: "score", value: datas },
+              { name: "total", value: 1 - datas },
             ]}
             cx="50%"
             cy="50%"

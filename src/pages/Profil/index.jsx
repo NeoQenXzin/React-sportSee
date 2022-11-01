@@ -1,4 +1,3 @@
-import { USER_MAIN_DATA } from "../../data/mocked-data";
 import "./index.css";
 import BarChartx from "../../components/BarChart/BarChart";
 import LineChartx from "../../components/LineChart/LineChart";
@@ -8,8 +7,33 @@ import calories from "./img/calories-icon.png";
 import proteines from "./img/protein-icon.png";
 import glucides from "./img/carbs-icon.png";
 import lipides from "./img/fat-icon.png";
+// Mocked-data
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from "../../data/mocked-data";
+// Hook Api
+import useCallApi from "../../useCallApi";
+//Context
+import { ApiContext } from "../../Context/ApiContext";
+import { useContext } from "react";
 
 function Profil() {
+  // Appel Api ou mocked-data via un hook
+  const apiData = useCallApi();
+  const { activity, averageSessions, performance, performanceKind, userScore } =
+    apiData;
+  console.log(performance);
+  console.log(activity);
+  console.log(apiData);
+
+  // Appel Api ou mocked-data via Context
+  // const test = useContext(ApiContext);
+  // const { prenom } = test;
+  // console.log(test);
+
   return (
     <div className="profil">
       <h1>
@@ -24,17 +48,21 @@ function Profil() {
         {/* partie gauche data utilisateur  */}
         <div className="graphics">
           <div className="barre-graphic">
-            <BarChartx />
+            {/* <BarChartx data={USER_ACTIVITY[1].sessions} /> */}
+            <BarChartx data={activity} />
           </div>
           <div className="graphic-container">
             <div className="graphic line-chart">
-              <LineChartx />
+              <LineChartx data={averageSessions} />
+              {/* <LineChartx data={USER_AVERAGE_SESSIONS[1].sessions} /> */}
             </div>
             <div className="graphic radar-chart">
-              <RadarChartx />
+              <RadarChartx data={performance} />
+              {/* <RadarChartx data={USER_PERFORMANCE[1]} /> */}
             </div>
             <div className="graphic pie-chart">
-              <PieChart />
+              <PieChart data={userScore} />
+              {/* <PieChart data={USER_MAIN_DATA[1].score} /> */}
             </div>
           </div>
         </div>
