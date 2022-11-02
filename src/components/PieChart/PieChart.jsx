@@ -4,6 +4,12 @@ import "./PieChart.css";
 // import { USER_MAIN_DATA } from "../../data/mocked-data";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
+/**
+ * Show user score with pie chart
+ * @param { Object } params
+ * @param { Number } params.data
+ * @returns {JSX}
+ */
 export default function PieChartx({ data }) {
   // const datas = data;
   // console.log(data);
@@ -12,6 +18,12 @@ export default function PieChartx({ data }) {
     data: PropTypes.number.isRequired,
   };
 
+  /**
+   * Show custom tooltip
+   * @param { Object } params
+   * @param { Array } params.payload
+   * @returns
+   */
   const CustomLegend = ({ payload }) => (
     <div className="chart-legend">
       <div className="chart-legend-1">{payload[0].payload.value * 100}%</div>

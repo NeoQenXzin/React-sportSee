@@ -11,6 +11,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * Show user Activity with bar chart
+ * @param { Object } params
+ * @param { Array } params.data
+ * @returns {JSX}
+ */
 export default function BarChartx({ data }) {
   // propTypes
   BarChartx.propTypes = {

@@ -10,6 +10,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * Show user performance with radar chart
+ * @param { Object } params
+ * @param { Object } params.data
+ * @returns {JSX}
+ */
 export default function RadarChartx({ data }) {
   // console.log(data);
   const kind = data.kind;

@@ -2,6 +2,12 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import LOGO from "./logo-sportsee.png";
 
+/**
+ * Show header navigation menu
+ *
+ * @returns {JSX}
+ */
+
 function Header() {
   return (
     <header className="header">

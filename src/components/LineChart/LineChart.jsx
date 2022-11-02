@@ -11,6 +11,12 @@ import {
 } from "recharts";
 // import { USER_AVERAGE_SESSIONS } from "../../data/mocked-data";
 
+/**
+ * Show user time session with line chart
+ * @param { Object } params
+ * @param { Array } params.data
+ * @returns {JSX}
+ */
 export default function LineChartx({ data }) {
   // prop-types
   LineChartx.propTypes = {
@@ -20,6 +26,13 @@ export default function LineChartx({ data }) {
   const dayWeek = { 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S", 7: "D" };
   const formatDay = (item) => dayWeek[item];
 
+  /**
+   * Show custom tooltip
+   * @param { Object } params
+   * @param { Boolean } params.active
+   * @param { Array } params.payload
+   * @returns
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (

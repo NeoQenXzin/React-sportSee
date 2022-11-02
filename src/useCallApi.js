@@ -14,15 +14,13 @@ export default function useCallApi() {
   const [apiPerformanceKind, setApiPerformanceKind] = useState();
   const [apiUserScore, setApiUserScore] = useState(2);
 
-  // !!! Déclanche une boucle infini
-  // fetch("http://localhost:8000/user/12/activity")
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(data.data.sessions);
-  //     setApiActivity(data.data.sessions);
-  //   })
-  //   .catch((error) => console.log(error));
-
+  // const données = {
+  //   activity: apiActivity,
+  //   averageSessions: apiAverageSessions,
+  //   performance: apiPerformance,
+  //   performanceKind: apiPerformanceKind,
+  //   userScore: apiUserScore,
+  // };
   useEffect(() => {
     const setData = () => {
       fetch("http://localhost:8000/user/12/activity")
@@ -39,25 +37,18 @@ export default function useCallApi() {
         .then((response) => response.json())
         .then((data) => setApiUserScore(data))
         .catch((error) => console.log(error));
+      fetch("http://localhost:8000/user/12/performance")
+        .then((response) => response.json())
+        .then((data) => {
+          setApiPerformance(data.data);
+          setApiPerformanceKind(data.data.kind);
+        })
+        .catch((error) => console.log(error));
     };
-    fetch("http://localhost:8000/user/12/performance")
-      .then((response) => response.json())
-      .then((data) => {
-        setApiPerformance(data.data);
-        setApiPerformanceKind(data.data.kind);
-      })
-      .catch((error) => console.log(error));
 
     setData();
   }, []);
 
-  // const données = {
-  //   activity: apiActivity,
-  //   averageSessions: apiAverageSessions,
-  //   performance: apiPerformance,
-  //   performanceKind: apiPerformanceKind,
-  //   userScore: apiUserScore,
-  // };
   console.log(apiActivity);
   console.log(apiAverageSessions);
   console.log(apiPerformance);
@@ -72,7 +63,6 @@ export default function useCallApi() {
     user: USER_MAIN_DATA[1],
     userScore: USER_MAIN_DATA[1],
   };
-  // Les données n'arrive pas dans index.js => cause j'avais écrit: return { données } au lieu de: return données
 
   return données;
 }

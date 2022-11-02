@@ -1,9 +1,16 @@
 import "./VerticalNav.css";
 import { Link } from "react-router-dom";
-import Yoga from "./yoga.png";
-import Natation from "./natation.png";
-import Velo from "./velo.png";
-import Muscu from "./muscu.png";
+import Yoga from "./img/yoga.png";
+import Natation from "./img/natation.png";
+import Velo from "./img/velo.png";
+import Muscu from "./img/muscu.png";
+
+/**
+ * Show sidebar navigation menu
+ *
+ * @returns {JSX}
+ */
+
 function VerticalNav() {
   return (
     <div className="vertical-nav-container">

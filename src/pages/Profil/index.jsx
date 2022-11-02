@@ -7,14 +7,8 @@ import calories from "./img/calories-icon.png";
 import proteines from "./img/protein-icon.png";
 import glucides from "./img/carbs-icon.png";
 import lipides from "./img/fat-icon.png";
-// Mocked-data
-import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from "../../data/mocked-data";
-// Hook Api
+
+// Hook Api or Mocked-data
 import useCallApi from "../../useCallApi";
 //Context
 import { ApiContext } from "../../Context/ApiContext";
@@ -69,9 +63,7 @@ function Profil() {
             <div className="result-user">
               <img src={calories} alt="icon" />
               <div>
-                <span className="keydata">
-                  {USER_MAIN_DATA[1].keyData.calorieCount}kCal
-                </span>
+                <span className="keydata">{user.keyData.calorieCount}kCal</span>
                 <p>Calories</p>
               </div>
             </div>
@@ -80,9 +72,7 @@ function Profil() {
             <div className="result-user">
               <img src={proteines} alt="icon" />
               <div>
-                <span className="keydata">
-                  {USER_MAIN_DATA[1].keyData.proteinCount}g
-                </span>
+                <span className="keydata">{user.keyData.proteinCount}g</span>
                 <p>Proteines</p>
               </div>
             </div>
@@ -92,7 +82,7 @@ function Profil() {
               <img src={glucides} alt="icon" />
               <div>
                 <span className="keydata">
-                  {USER_MAIN_DATA[1].keyData.carbohydrateCount}g
+                  {user.keyData.carbohydrateCount}g
                 </span>
                 <p>Glucides</p>
               </div>
@@ -102,9 +92,7 @@ function Profil() {
             <div className="result-user">
               <img src={lipides} alt="icon" />
               <div>
-                <span className="keydata">
-                  {USER_MAIN_DATA[1].keyData.lipidCount}g
-                </span>
+                <span className="keydata">{user.keyData.lipidCount}g</span>
                 <p>Lipides</p>
               </div>
             </div>
