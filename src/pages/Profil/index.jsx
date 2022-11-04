@@ -1,8 +1,15 @@
 import "./index.css";
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from "../../data/mocked-data";
 import BarChartx from "../../components/BarChart/BarChart";
 import LineChartx from "../../components/LineChart/LineChart";
 import RadarChartx from "../../components/RadarChart/RadarChart";
 import PieChart from "../../components/PieChart/PieChart";
+import UserStats from "../../components/UserStats/UserStats";
 import calories from "./img/calories-icon.png";
 import proteines from "./img/protein-icon.png";
 import glucides from "./img/carbs-icon.png";
@@ -10,22 +17,22 @@ import lipides from "./img/fat-icon.png";
 
 // Hook Api or Mocked-data
 import useCallApi from "../../useCallApi";
-//Context
-import { ApiContext } from "../../Context/ApiContext";
-import { useContext } from "react";
+
+// Mocked data
+const données = {
+  activity: USER_ACTIVITY[1].sessions,
+  averageSessions: USER_AVERAGE_SESSIONS[1].sessions,
+  performance: USER_PERFORMANCE[1],
+  user: USER_MAIN_DATA[1],
+  userScore: USER_MAIN_DATA[1],
+};
 
 function Profil() {
   // Appel Api ou mocked-data via un hook
-  const apiData = useCallApi();
-  const { activity, averageSessions, performance, user, userScore } = apiData;
-  console.log(performance);
-  console.log(activity);
+  const apiData = useCallApi(données);
+  const { activity, averageSessions, performance, user } = données;
+  // const { activity, averageSessions, performance, user } = apiData;
   console.log(apiData);
-
-  // Appel Api ou mocked-data via Context
-  // const test = useContext(ApiContext);
-  // const { prenom } = test;
-  // console.log(test);
 
   return (
     <div className="profil">
@@ -37,66 +44,45 @@ function Profil() {
       <div className="container-graphics">
         {/* partie gauche data utilisateur  */}
         <div className="graphics">
-          <div className="barre-graphic">
-            {/* <BarChartx data={USER_ACTIVITY[1].sessions} /> */}
-            <BarChartx data={activity} />
-          </div>
+          <BarChartx data={activity} />
+
           <div className="graphic-container">
-            <div className="graphic line-chart">
-              <LineChartx data={averageSessions} />
-              {/* <LineChartx data={USER_AVERAGE_SESSIONS[1].sessions} /> */}
-            </div>
-            <div className="graphic radar-chart">
-              <RadarChartx data={performance} />
-              {/* <RadarChartx data={USER_PERFORMANCE[1]} /> */}
-            </div>
-            <div className="graphic pie-chart">
-              <PieChart data={userScore.score} />
-              {/* <PieChart data={USER_MAIN_DATA[1].score} /> */}
-            </div>
+            <LineChartx data={averageSessions} />
+            <RadarChartx data={performance} />
+            <PieChart data={user.score} />
           </div>
         </div>
 
-        {/* partie droite data utilisateur */}
+        {/* partie droite Stats utilisateur */}
         <div className="results">
-          <div className="result-user-container">
-            <div className="result-user">
-              <img src={calories} alt="icon" />
-              <div>
-                <span className="keydata">{user.keyData.calorieCount}kCal</span>
-                <p>Calories</p>
-              </div>
-            </div>
-          </div>
-          <div className="result-user-container">
-            <div className="result-user">
-              <img src={proteines} alt="icon" />
-              <div>
-                <span className="keydata">{user.keyData.proteinCount}g</span>
-                <p>Proteines</p>
-              </div>
-            </div>
-          </div>
-          <div className="result-user-container">
-            <div className="result-user">
-              <img src={glucides} alt="icon" />
-              <div>
-                <span className="keydata">
-                  {user.keyData.carbohydrateCount}g
-                </span>
-                <p>Glucides</p>
-              </div>
-            </div>
-          </div>
-          <div className="result-user-container">
-            <div className="result-user">
-              <img src={lipides} alt="icon" />
-              <div>
-                <span className="keydata">{user.keyData.lipidCount}g</span>
-                <p>Lipides</p>
-              </div>
-            </div>
-          </div>
+          <UserStats
+            user={user}
+            image={calories}
+            stat={user.keyData.calorieCount / 1000}
+            title="Calories"
+            type="kCal"
+          />
+          <UserStats
+            user={user}
+            image={proteines}
+            stat={user.keyData.proteinCount}
+            title="Proteines"
+            type="g"
+          />
+          <UserStats
+            user={user}
+            image={glucides}
+            stat={user.keyData.carbohydrateCount}
+            title="Glucides"
+            type="g"
+          />
+          <UserStats
+            user={user}
+            image={lipides}
+            stat={user.keyData.lipidCount}
+            title="Lipides"
+            type="g"
+          />
         </div>
       </div>
     </div>

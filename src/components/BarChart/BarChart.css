@@ -24,13 +24,30 @@
   align-items: center;
   gap: 12px;
 }
-/* .tooltip {
+
+.custom-tooltip {
+  border: none;
+}
+.custom-tooltip.custom-bar {
+  margin-left: 30px;
+  /* margin-bottom: 150px; */
   color: #fff;
-  font-size: 7px;
   background: #e60000;
-  font-weight: 500;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 80px;
+  width: 60px;
+  border: none;
+}
+.custom-tooltip .data-kg,
+.custom-tooltip .data-cal {
+  font-weight: 400;
   font-family: "Roboto";
-} */
+  font-size: 12px;
+}
+
 .barchart-legend li::before {
   display: block;
   content: "";

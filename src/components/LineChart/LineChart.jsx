@@ -9,7 +9,6 @@ import {
   YAxis,
   Line,
 } from "recharts";
-// import { USER_AVERAGE_SESSIONS } from "../../data/mocked-data";
 
 /**
  * Show user time session with line chart
@@ -50,11 +49,11 @@ export default function LineChartx({ data }) {
   };
 
   return (
-    <div>
+    <div className="graphic line-chart">
       <h2 className="linechart-title">
         Durée moyenne des <br></br> sessions
       </h2>
-      <ResponsiveContainer width={258} height={170}>
+      <ResponsiveContainer width="100%" height="60%">
         <LineChart
           data={data}
           // margin={{ top: 5, bottom: 50 }}

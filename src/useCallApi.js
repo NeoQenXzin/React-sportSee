@@ -8,61 +8,95 @@ import {
 
 export default function useCallApi() {
   // State
-  const [apiActivity, setApiActivity] = useState();
-  const [apiAverageSessions, setApiAverageSessions] = useState();
-  const [apiPerformance, setApiPerformance] = useState();
-  const [apiPerformanceKind, setApiPerformanceKind] = useState();
-  const [apiUserScore, setApiUserScore] = useState(2);
+  const [activity, setActivity] = useState();
+  const [averageSessions, setAverageSessions] = useState();
+  const [performance, setPerformance] = useState();
+  const [performanceKind, setPerformanceKind] = useState();
+  const [user, setUser] = useState(2);
 
-  // const données = {
-  //   activity: apiActivity,
-  //   averageSessions: apiAverageSessions,
-  //   performance: apiPerformance,
-  //   performanceKind: apiPerformanceKind,
-  //   userScore: apiUserScore,
+  //Choix des data
+  const mockedData = true; // Use true for mocked data | false for Api Data
+  const user_selected = 12; // Actually you can switch user beetween 12 | 18
+  const url = "http://localhost:8000"; // Url server Api
+
+  // const typeData = () => {
+  //   console.log("typeData chargé");
+  //   if (tuit) {
+  //     setPerformanceKind(5);
+  //   }
   // };
-  useEffect(() => {
-    const setData = () => {
-      fetch("http://localhost:8000/user/12/activity")
-        .then((response) => response.json())
-        .then((data) => setApiActivity(data.data.sessions))
-        .catch((error) => console.log(error));
+  // typeData();
 
-      fetch("http://localhost:8000/user/12/average-sessions")
-        .then((response) => response.json())
-        .then((data) => setApiAverageSessions(data.data.sessions))
-        .catch((error) => console.log(error));
+  // const getActivity = () => {
+  //   if (!mockedData) {
+  //     console.log("Vous utilisez les données api activity");
+  //     fetch(`${url}/user/${user_selected}/activity`)
+  //       .then((response) => response.json())
+  //       .then((data) => setActivity(data.data.sessions))
+  //       .catch((error) => console.log(error));
+  //   } else {
+  //     setActivity(USER_ACTIVITY[1].sessions);
+  //   }
+  // };
+  // getActivity();
 
-      fetch("http://localhost:8000/user/12/")
+  useEffect(
+    (mockedData) => {
+      if (!mockedData) {
+        console.log("Vous utilisez les données api activity");
+        fetch(`${url}/user/${user_selected}/activity`)
+          .then((response) => response.json())
+          .then((data) => setActivity(data.data.sessions))
+          .catch((error) => console.log(error));
+      } else {
+        setActivity(USER_ACTIVITY[1].sessions);
+      }
+    },
+    [mockedData]
+  );
+  useEffect((mockedData) => {
+    if (!mockedData) {
+      console.log("Vous utilisez les données api average");
+      fetch(`${url}/user/${user_selected}/average-sessions`)
         .then((response) => response.json())
-        .then((data) => setApiUserScore(data))
+        .then((data) => setAverageSessions(data.data.sessions))
         .catch((error) => console.log(error));
-      fetch("http://localhost:8000/user/12/performance")
+    } else {
+      setAverageSessions(USER_AVERAGE_SESSIONS[1].sessions);
+    }
+  }, []);
+  useEffect((mockedData) => {
+    if (!mockedData) {
+      console.log("Vous utilisez les données api user");
+      fetch(`${url}/user/${user_selected}/`)
+        .then((response) => response.json())
+        .then((data) => setUser(data))
+        .catch((error) => console.log(error));
+    } else {
+      setUser(USER_MAIN_DATA[1].score);
+    }
+  }, []);
+  useEffect((mockedData) => {
+    if (!mockedData) {
+      console.log("Vous utilisez les données api performance");
+      fetch(`${url}/user/${user_selected}/performance`)
         .then((response) => response.json())
         .then((data) => {
-          setApiPerformance(data.data);
-          setApiPerformanceKind(data.data.kind);
+          setPerformance(data.data);
+          setPerformanceKind(data.data.kind);
         })
         .catch((error) => console.log(error));
-    };
-
-    setData();
+    } else {
+      setPerformance(USER_PERFORMANCE[1]);
+      setPerformanceKind(USER_PERFORMANCE[1]);
+    }
   }, []);
 
-  console.log(apiActivity);
-  console.log(apiAverageSessions);
-  console.log(apiPerformance);
-  console.log(apiUserScore);
-  console.log(apiPerformanceKind);
+  // console.log(activity);
+  // console.log(averageSessions);
+  // console.log(performance);
+  // console.log(user);
+  // console.log(performanceKind);
 
-  // Mocked data
-  const données = {
-    activity: USER_ACTIVITY[1].sessions,
-    averageSessions: USER_AVERAGE_SESSIONS[1].sessions,
-    performance: USER_PERFORMANCE[1],
-    user: USER_MAIN_DATA[1],
-    userScore: USER_MAIN_DATA[1],
-  };
-
-  return données;
+  return { activity, averageSessions, performance, user, performanceKind };
 }

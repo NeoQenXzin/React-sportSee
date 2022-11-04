@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./PieChart.css";
-// import { USER_MAIN_DATA } from "../../data/mocked-data";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
 /**
@@ -11,8 +10,6 @@ import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
  * @returns {JSX}
  */
 export default function PieChartx({ data }) {
-  // const datas = data;
-  // console.log(data);
   //proptypes
   PieChartx.propTypes = {
     data: PropTypes.number.isRequired,
@@ -36,9 +33,9 @@ export default function PieChartx({ data }) {
   };
 
   return (
-    <div>
+    <div className="graphic pie-chart">
       <h2 className="pie-title">Score</h2>
-      <ResponsiveContainer width={258} height={253}>
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart margin={{ top: 35, right: 35, bottom: 35, left: 35 }}>
           <Pie
             dataKey="value"

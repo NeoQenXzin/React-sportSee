@@ -23,15 +23,33 @@ export default function BarChartx({ data }) {
     data: propTypes.array.isRequired,
   };
 
+  /**
+   * Show custom tooltip
+   * @param { Object } params
+   * @param { Boolean } params.active
+   * @param { Array } params.payload
+   * @returns
+   */
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip custom-bar">
+          <div className="data-kg">{`${payload[0].value}Kg`}</div>
+          <div className="data-cal">{`${payload[1].value}kCal`}</div>
+        </div>
+      );
+    }
+  };
+
   const formatDay = (item) => new Date(item).getDate();
   return (
-    <div>
+    <div className="barre-graphic">
       <h2 className="barchart-title">Activité quotidienne</h2>
       <ul className="barchart-legend">
         <li>Poids (kg)</li>
         <li>Calories brûlées (kcal)</li>
       </ul>
-      <ResponsiveContainer width={835} height={200}>
+      <ResponsiveContainer width="100%" height="60%">
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="2" vertical={false} />
           <XAxis
@@ -56,9 +74,13 @@ export default function BarChartx({ data }) {
             yAxisId="calories"
             hide
             orientation="right"
-            domain={["dataMin-100", "dataMax+0"]}
+            domain={["dataMin-100", "dataMax+10"]}
           />
-          <Tooltip className="tooltip" />
+          <Tooltip
+            content={<CustomTooltip />}
+            // viewBox={{ x: 50, y: 150, width: 200, height: 400 }}
+            // coordinate={{ x: 100, y: 340 }}
+          />
           <Bar
             dataKey="kilogram"
             fill="#282d30"
