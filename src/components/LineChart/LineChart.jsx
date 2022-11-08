@@ -75,7 +75,7 @@ export default function LineChartx({ data }) {
           <Tooltip content={CustomTooltip} />
 
           <Line
-            type="monotone"
+            type="natural"
             dataKey="sessionLength"
             stroke="#fff"
             strokeWidth={2}
