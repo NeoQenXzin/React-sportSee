@@ -23,70 +23,93 @@ import useFetch from "../../useFetch";
 
 // Mocked data
 //Choix des data
-const mockedData = true; // Use true for mocked data | false for Api Data
-const données = {
-  activity: USER_ACTIVITY[1].sessions,
-  averageSessions: USER_AVERAGE_SESSIONS[1].sessions,
-  performance: USER_PERFORMANCE[1],
-  user: USER_MAIN_DATA[1],
-  userScore: USER_MAIN_DATA[1],
-};
+const mockedData = false; // Use true for mocked data | false for Api Data
+// const données = {
+//   activity: USER_ACTIVITY[1].sessions,
+//   averageSessions: USER_AVERAGE_SESSIONS[1].sessions,
+//   performance: USER_PERFORMANCE[1],
+//   user: USER_MAIN_DATA[1],
+//   userScore: USER_MAIN_DATA[1],
+// };
 
-function Profil() {
+const Profil = () => {
   // const { activity, averageSessions, performance, user } = données; //mocked data
-  const [activity, setActivity] = useState();
-  const [averageSessions, setAverageSessions] = useState();
-  const [performance, setPerformance] = useState();
-  const [user, setUser] = useState();
 
+  // ApiData config
   const url = "http://localhost:8000"; // Url server Api,
   const user_selected = 12; // Actually you can switch user beetween 12 | 18
+  //states
+  const [activity, setActivity] = useState({});
+  const [averageSessions, setAverageSessions] = useState({});
+  const [performance, setPerformance] = useState({});
+  const [user, setUser] = useState(USER_MAIN_DATA[1]);
 
-  const { sendRequest: fetchPerformance } = useFetch(
-    `${url}/user/${user_selected}/performance`
-  );
-  const { sendRequest: fetchActivity } = useFetch(
+  // fetch data service
+  const { isLoading: loadingPerformance, sendRequest: fetchPerformance } =
+    useFetch(`${url}/user/${user_selected}/performance`);
+
+  const { isLoading: loadingActivity, sendRequest: fetchActivity } = useFetch(
     `${url}/user/${user_selected}/activity`
   );
-  const { sendRequest: fetchAverageSessions } = useFetch(
-    `${url}/user/${user_selected}/average-sessions`
+
+  const {
+    isLoading: loadingAverageSessions,
+    sendRequest: fetchAverageSessions,
+  } = useFetch(`${url}/user/${user_selected}/average-sessions`);
+
+  const { isLoading: loadingUser, sendRequest: fetchUser } = useFetch(
+    `${url}/user/${user_selected}/`
   );
-  const { sendRequest: fetchUser } = useFetch(`${url}/user/${user_selected}`);
+
+  // useEfect function
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchUser();
+      (await loadingUser) === false && setUser(data.data);
+    }
+    fetchData();
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
       const data = await fetchPerformance();
-      setPerformance(data.data.data);
-    }
-    fetchData();
-  }, []);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchActivity();
-      setActivity(data.data.sessions);
-    }
-    fetchData();
-  }, []);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchAverageSessions();
-      setAverageSessions(data.data.sessions);
-    }
-    fetchData();
-  }, []);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchUser();
-      setUser(data);
+      (await loadingPerformance) === false && setPerformance(data);
     }
     fetchData();
   }, []);
 
-  console.log(user);
-  console.log(performance);
-  if (!mockedData) {
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchActivity();
+      (await loadingActivity) === false && setActivity(data.data.sessions);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchAverageSessions();
+      (await loadingAverageSessions) === false &&
+        setAverageSessions(data.data.sessions);
+      // await console.log(data.data.session);
+    }
+    fetchData();
+  }, []);
+
+  // Dashboard
+  if (
+    loadingUser ||
+    loadingActivity ||
+    loadingAverageSessions ||
+    loadingPerformance
+  ) {
     return <h1>Loading</h1>;
-  } else {
+  } else if (
+    loadingUser === false &&
+    loadingActivity === false &&
+    loadingAverageSessions === false &&
+    loadingPerformance === false
+  ) {
     return (
       <div className="profil">
         <h1>
@@ -95,7 +118,7 @@ function Profil() {
         <p>Félicitation ! Vous avez explosez vos objectifs d'hier 👏 </p>
 
         <div className="container-graphics">
-          {/* partie gauche data utilisateur  */}
+          {/* Left side data user (graphics)  */}
           <div className="graphics">
             <BarChartx data={activity} />
             <div className="graphic-container">
@@ -105,7 +128,7 @@ function Profil() {
             </div>
           </div>
 
-          {/* partie droite Stats utilisateur */}
+          {/* Right side data user (stats) */}
           <div className="results">
             <UserStats
               user={user}
@@ -140,6 +163,6 @@ function Profil() {
       </div>
     );
   }
-}
+};
 
 export default Profil;

@@ -21,6 +21,7 @@ export default function RadarChartx({ data }) {
   //propTypes
   RadarChartx.propTypes = {
     data: propTypes.object.isRequired,
+    // data: propTypes.array.isRequired,
   };
 
   const kindTitle = {
