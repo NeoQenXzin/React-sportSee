@@ -43,6 +43,7 @@ const Profil = () => {
   const [averageSessions, setAverageSessions] = useState({});
   const [performance, setPerformance] = useState({});
   const [user, setUser] = useState(USER_MAIN_DATA[1]);
+  const [performanceKind, setPerformanceKind] = useState();
 
   // fetch data service
   const { isLoading: loadingPerformance, sendRequest: fetchPerformance } =
@@ -73,7 +74,8 @@ const Profil = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchPerformance();
-      (await loadingPerformance) === false && setPerformance(data);
+      (await loadingPerformance) === false && setPerformance(data.data);
+      setPerformanceKind(data.kind);
     }
     fetchData();
   }, []);
@@ -123,7 +125,12 @@ const Profil = () => {
             <BarChartx data={activity} />
             <div className="graphic-container">
               <LineChartx data={averageSessions} />
-              <RadarChartx data={performance} />
+              <RadarChartx
+                data={performance}
+                // kind={performance.kind}
+                // // kind={performanceKind}
+                // datas={performance.data}
+              />
               <PieChart data={user.score} />
             </div>
           </div>

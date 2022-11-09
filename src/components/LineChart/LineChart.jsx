@@ -53,7 +53,7 @@ export default function LineChartx({ data }) {
       <h2 className="linechart-title">
         Durée moyenne des <br></br> sessions
       </h2>
-      <ResponsiveContainer width="100%" height="60%">
+      <ResponsiveContainer width="100%" height="80%">
         <LineChart
           data={data}
           // margin={{ top: 5, bottom: 50 }}
@@ -70,7 +70,7 @@ export default function LineChartx({ data }) {
           <YAxis
             hide
             type="number"
-            domain={[(dataMin) => 0, (dataMax) => dataMax + 10]}
+            domain={[(dataMin) => dataMin - 30, (dataMax) => dataMax + 30]}
           />
           <Tooltip content={CustomTooltip} />
 
