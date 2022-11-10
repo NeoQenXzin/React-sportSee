@@ -82,4 +82,11 @@ Then go to the file app/index.js and change the **_const port = 3000_** by **_po
 
 ## More
 
-soon
+For use mocked-data you must uncomment For "use mocked data" and comment "For use api data" at src/pages/profil.js
+You can change the url or user (line 50 to line 52)
+
+> // ApiData config
+
+> const url = "http://localhost:8000"; // Url server Api,
+
+> const user_selected = 12; // Actually you can switch user beetween 12 | 18
