@@ -21,7 +21,7 @@ import {
 import useFetchData from "../../useFetchData";
 
 const Profil = () => {
-  //For mocked-data you must uncomment For use mocked data and comment For use api data
+  //For use mocked-data you must uncomment For "use mocked data" and comment "For use api data"
 
   //***  For use  Mocked data*/
   // const données = {
@@ -65,6 +65,7 @@ const Profil = () => {
   //** end api data */
 
   // Dashboard
+
   if (
     loadingUser ||
     loadingActivity ||
@@ -83,7 +84,10 @@ const Profil = () => {
     return (
       <div className="profil">
         <h1>
-          Bonjour <span className="user-name">{user.userInfos.firstName}</span>
+          Bonjour{" "}
+          <span className="user-name">
+            {user === undefined ? "En charge" : user.userInfos.firstName}
+          </span>
         </h1>
         <p>Félicitation ! Vous avez explosez vos objectifs d'hier 👏 </p>
 
@@ -93,12 +97,7 @@ const Profil = () => {
             <BarChartx data={activity} />
             <div className="graphic-container">
               <LineChartx data={averageSessions} />
-              <RadarChartx
-                data={performance}
-                // kind={performance.kind}
-                // // kind={performanceKind}
-                // datas={performance.data}
-              />
+              <RadarChartx data={performance} />
               <PieChart data={user.score} />
             </div>
           </div>

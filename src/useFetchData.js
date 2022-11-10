@@ -5,10 +5,10 @@ import { USER_MAIN_DATA } from "../src/data/mocked-data";
 
 const useFetchData = (url, user_selected) => {
   //states
-  const [activity, setActivity] = useState({});
-  const [averageSessions, setAverageSessions] = useState({});
+  const [activity, setActivity] = useState([]);
+  const [averageSessions, setAverageSessions] = useState([]);
   const [performance, setPerformance] = useState({});
-  const [user, setUser] = useState(USER_MAIN_DATA[1]);
+  const [user, setUser] = useState(USER_MAIN_DATA[1]); // initialise first render with mocked data
   const [performanceKind, setPerformanceKind] = useState();
 
   // fetch data service
@@ -32,7 +32,7 @@ const useFetchData = (url, user_selected) => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchUser();
-      (await loadingUser) === false && setUser(data.data);
+      setUser(data.data);
     }
     fetchData();
   }, []);
@@ -40,7 +40,7 @@ const useFetchData = (url, user_selected) => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchPerformance();
-      (await loadingPerformance) === false && setPerformance(data.data);
+      setPerformance(data.data);
       setPerformanceKind(data.kind);
     }
     fetchData();
@@ -49,7 +49,7 @@ const useFetchData = (url, user_selected) => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchActivity();
-      (await loadingActivity) === false && setActivity(data.data.sessions);
+      setActivity(data.data.sessions);
     }
     fetchData();
   }, []);
@@ -57,9 +57,7 @@ const useFetchData = (url, user_selected) => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchAverageSessions();
-      (await loadingAverageSessions) === false &&
-        setAverageSessions(data.data.sessions);
-      // await console.log(data.data.session);
+      setAverageSessions(data.data.sessions);
     }
     fetchData();
   }, []);
