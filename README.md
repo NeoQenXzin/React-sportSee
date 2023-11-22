@@ -1,9 +1,20 @@
+# 🎓 p12 ocr
+
+Utiliser une librairie react pour faire des graphiques à partir de mocked Data 
+En utilisant les prop-types et JSDOC
+![image](https://github.com/NeoQenXzin/React-sportSee/assets/66415285/2cbe7c25-a96e-472e-87ea-efcbf0cf2650)
+
+
+
+
 [![forthebadge](https://forthebadge.com/images/badges/cc-0.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 ![Framework-react](./public/framework-react.svg)
 
 # SportSee : improve yourself
+![image](https://github.com/NeoQenXzin/React-sportSee/assets/66415285/9ea79d64-12dd-47ab-b712-d941cb24d098)
+
 
 This repo contains all the source code to run the sports analytics dashboard SportSee.
 
